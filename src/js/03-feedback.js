@@ -9,9 +9,7 @@ const refs = {
     message: document.querySelector('textarea[name="message"]'),
 }
 
-populateFormOutput();
 const savedText = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || {};
-
 
 refs.form.addEventListener('input', throttle(handlerFormOutput, 500));
 
@@ -19,7 +17,6 @@ function handlerFormOutput(event) {
     const formData = savedText;
     formData[event.target.name] = event.target.value;
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
-
 }
 
 refs.form.addEventListener('submit', formResult);
@@ -33,10 +30,7 @@ function formResult(evt) {
     refs.form.reset();   
 }
 
-function populateFormOutput() {
-
-    if (savedText) {
-        refs.email.value = savedText.email  || "";
-        refs.message.value = savedText.message || "";
-    };
-}
+if (savedText) {
+    refs.email.value = savedText.email  || "";
+    refs.message.value = savedText.message || "";
+};
